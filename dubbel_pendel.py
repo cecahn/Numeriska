@@ -4,15 +4,15 @@ import math
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
-m = 1
-l = 1
-t0 = 0
-t1 = 10
-h = 0.1
-t_span = (t0, t1)
-# y0 = vinkel 1, vinkel 2, rörelsemängd 1, rörelsemängd 2
+# parameters
+m = 1       # pendulum mass
+l = 1       # pendulum length
+t0 = 0      # start time
+t1 = 10     # end time
+h = 0.1     # step size
+# y0 = angle 1, angle 2, momentum 1, momentum 2
 y0 = [np.pi/10, np.pi/10, 0, 0]
-times = np.arange(t0, t1, h)
+t_span = (t0, t1)
 
 
 def plot(t, ys, xlab, ylab, text):
@@ -86,6 +86,7 @@ def RungeKutta(t_span, y0, h, m, l):
 
 
 # Uppgift 1
+times = np.arange(t0, t1, h)
 solution = sp.integrate.solve_ivp(fun, t_span, y0, t_eval=times, args=(m, l))
 plot(solution.t, [solution.y[0], solution.y[1]],
      'Tid (sekunder)', 'Vinkel (radianer)', 'Solve_ivp')
