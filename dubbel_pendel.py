@@ -15,12 +15,14 @@ y0 = [np.pi/10, np.pi/10, 0, 0]
 t_span = (t0, t1)
 
 
-def plot(t, ys, xlab, ylab, text):
+def plot(t, ys, xlab, ylab, text, legends):
     for y in ys:
         plt.plot(t, y)
     plt.xlabel(xlab)
     plt.ylabel(ylab)
     plt.title(text)
+    if legends:
+        plt.legend(legends)
     plt.show()
 
 
@@ -89,7 +91,7 @@ def RungeKutta(t_span, y0, h, m, l):
 times = np.arange(t0, t1, h)
 solution = sp.integrate.solve_ivp(fun, t_span, y0, t_eval=times, args=(m, l))
 plot(solution.t, [solution.y[0], solution.y[1]],
-     'Tid (sekunder)', 'Vinkel (radianer)', 'Solve_ivp')
+     'Tid (sekunder)', 'Vinkel (radianer)', 'Solve_ivp', ['vinkel 1', 'vinkel 2'])
 
 
 # Uppgift 2
@@ -97,13 +99,13 @@ plot(solution.t, [solution.y[0], solution.y[1]],
 h = 0.001
 t_e, v1_e, v2_e, p1_e, p2_e = Euler(t_span, y0, h, m, l)
 plot(t_e, [v1_e, v2_e],
-     'Tid (sekunder)', 'Vinkel (radianer)', 'Euler')
+     'Tid (sekunder)', 'Vinkel (radianer)', 'Euler', ['vinkel 1', 'vinkel 2'])
 
 # Runge Kutta
 h = 0.1
 t_rk, v1_rk, v2_rk, p1_rk, p2_rk = RungeKutta(t_span, y0, h, m, l)
 plot(t_rk, [v1_rk, v2_rk],
-     'Tid (sekunder)', 'Vinkel (radianer)', 'Runge-Kutta')
+     'Tid (sekunder)', 'Vinkel (radianer)', 'Runge-Kutta', ['vinkel 1', 'vinkel 2'])
 
 
 # Uppgift 3
@@ -137,4 +139,4 @@ def animate(i):
 # plot animation
 anim = animation.FuncAnimation(fig, animate, init_func=init,
                                frames=300, interval=len(t_rk), blit=True)
-plot([], [], '', '', 'Pendel med Runge-Kutta')
+plot([], [], '', '', 'Pendel med Runge-Kutta', [])
