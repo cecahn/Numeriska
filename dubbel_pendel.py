@@ -138,5 +138,5 @@ def animate(i):
 
 # plot animation
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=300, interval=len(t_rk), blit=True)
+                               frames=len(t_rk), interval=50, blit=True)
 plot([], [], '', '', 'Pendel med Runge-Kutta', [])
