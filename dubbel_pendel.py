@@ -9,7 +9,7 @@ m = 1       # pendulum mass
 l = 1       # pendulum length
 t0 = 0      # start time
 t1 = 10     # end time
-h = 0.1     # step size
+h = 0.01     # step size
 # y0 = angle 1, angle 2, momentum 1, momentum 2
 y0 = [np.pi/10, np.pi/10, 0, 0]
 t_span = (t0, t1)
@@ -102,7 +102,7 @@ plot(t_e, [v1_e, v2_e],
      'Tid (sekunder)', 'Vinkel (radianer)', 'Euler', ['vinkel 1', 'vinkel 2'])
 
 # Runge Kutta
-h = 0.1
+h = 0.01
 t_rk, v1_rk, v2_rk, p1_rk, p2_rk = RungeKutta(t_span, y0, h, m, l)
 plot(t_rk, [v1_rk, v2_rk],
      'Tid (sekunder)', 'Vinkel (radianer)', 'Runge-Kutta', ['vinkel 1', 'vinkel 2'])
